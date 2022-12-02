@@ -1,10 +1,7 @@
 const express = require('express');
 const { google } = require('googleapis')
-const csv = require('csvtojson')
 const router = express.Router();
-const app = express();
 
-// app.use('/')
 router.get("/", async (req, res) => {
   const auth = new google.auth.GoogleAuth({
     keyFile: "credentials.json",
@@ -29,6 +26,7 @@ router.get("/", async (req, res) => {
   })
 
   const result = json.filter((item) => item);
+  
   res.send(result)
 })
 
