@@ -9,4 +9,4 @@ app.use(express.json({ extended: false }));
 
 app.use("/api/items", items);
 
-app.listen(PORT, () => console.log(`Server is running in port ${PORT}`))
+app.listen(PORT, () => console.log(`Server is running in port ${PORT} or http://localhost:5050/api/items`))
