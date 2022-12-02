@@ -28,18 +28,6 @@ router.get("/", async (req, res) => {
     }
   })
 
-  await googleSheets.spreadsheets.values.append({
-    auth,
-    spreadsheetId,
-    range: "itens!A:F",
-    valueInputOption: "USER_ENTERED",
-    resource: {
-      values: [
-        ['nomeItem', 'teste', 'dano', 'vida']
-      ],
-    },
-  });
-
   const result = json.filter((item) => item);
   res.send(result)
 })
