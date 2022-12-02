@@ -5,7 +5,7 @@ const app = express();
 
 const PORT = process.env.PORT || 5050;
 // app.use('/')
-router.get("/product", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     res.json({
       status: 200,
