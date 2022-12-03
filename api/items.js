@@ -7,9 +7,9 @@ router.get("/", async (req, res) => {
     keyFile: "credentials.json",
     scopes: "https://www.googleapis.com/auth/spreadsheets",
   });
-  // const client = await auth.getClient();
-  // const googleSheets = google.sheets({ version: "v4", auth: client });
-  // const spreadsheetId = '1EUpzlHqk4IFaoC0bDMWtTw26wuf14YBQzXR6nyz0QtQ';
+  const client = await auth.getClient();
+  const googleSheets = google.sheets({ version: "v4", auth: client });
+  const spreadsheetId = '1EUpzlHqk4IFaoC0bDMWtTw26wuf14YBQzXR6nyz0QtQ';
 
   // const getRows = await googleSheets.spreadsheets.values.get({
   //   auth,
@@ -27,7 +27,7 @@ router.get("/", async (req, res) => {
 
   // const result = json.filter((item) => item);
   
-  res.send()
+  res.send("I'm working")
 })
 
 module.exports = router;
