@@ -8,7 +8,7 @@ router.get("/", async (req, res) => {
     scopes: "https://www.googleapis.com/auth/spreadsheets",
   });
   const client = await auth.getClient();
-  const googleSheets = google.sheets({ version: "v4", auth: client });
+  // const googleSheets = google.sheets({ version: "v4", auth: client });
   const spreadsheetId = '1EUpzlHqk4IFaoC0bDMWtTw26wuf14YBQzXR6nyz0QtQ';
 
   // const getRows = await googleSheets.spreadsheets.values.get({
