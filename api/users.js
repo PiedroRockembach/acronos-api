@@ -26,7 +26,7 @@ router.get("/", async (req, res) => {
     const getRows = await googleSheets.spreadsheets.values.get({
       auth,
       spreadsheetId,
-      range: "itens!A:F",
+      range: "usuarios!A:C",
     })
     
     const json = getRows.data.values.map((item, index, original) => {
