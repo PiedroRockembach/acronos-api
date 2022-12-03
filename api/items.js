@@ -7,27 +7,32 @@ router.get("/", async (req, res) => {
     keyFile: "credentials.json",
     scopes: "https://www.googleapis.com/auth/spreadsheets",
   });
-  const client = await auth.getClient();
-  const googleSheets = google.sheets({ version: "v4", auth: client });
-  const spreadsheetId = '1EUpzlHqk4IFaoC0bDMWtTw26wuf14YBQzXR6nyz0QtQ';
-
-  // const getRows = await googleSheets.spreadsheets.values.get({
-  //   auth,
-  //   spreadsheetId,
-  //   range: "itens!A:F",
-  // })
+  try {
+    const client = await auth.getClient();
+    const googleSheets = google.sheets({ version: "v4", auth: client });
+    const spreadsheetId = '1EUpzlHqk4IFaoC0bDMWtTw26wuf14YBQzXR6nyz0QtQ';
   
-  // const json = getRows.data.values.map((item, index, original) => {
-  //   if (index !== 0) {
-  //     const obj = {};
-  //     item.forEach(( status, i )=> obj[original[0][i]] = item[i])
-  //     return obj;
-  //   }
-  // })
-
-  // const result = json.filter((item) => item);
+    // const getRows = await googleSheets.spreadsheets.values.get({
+    //   auth,
+    //   spreadsheetId,
+    //   range: "itens!A:F",
+    // })
+    
+    // const json = getRows.data.values.map((item, index, original) => {
+    //   if (index !== 0) {
+    //     const obj = {};
+    //     item.forEach(( status, i )=> obj[original[0][i]] = item[i])
+    //     return obj;
+    //   }
+    // })
   
-  res.send("I'm working")
+    // const result = json.filter((item) => item);
+    res.send("I'm working");
+  } catch (error) {
+    res.send(error);
+  }
+  
+ 
 })
 
 module.exports = router;
