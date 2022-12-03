@@ -39,7 +39,7 @@ app.get("/", async (req, res) => {
 
 const PORT = process.env.PORT || 5050;
 
-app.use(express.json({ extended: true }));
+app.use(express.json({ extended: false }));
 
 // app.use("/");
 
