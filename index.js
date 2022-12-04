@@ -1,6 +1,9 @@
 const express = require('express');
+const cors = require('cors');
 const { google } = require('googleapis')
 const app = express();
+
+app.use(cors());
 
 const items = require("./api/items");
 const users = require("./api/users");
