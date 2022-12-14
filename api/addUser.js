@@ -2,12 +2,8 @@ const express = require('express');
 const { google } = require('googleapis')
 const router = express.Router();
 
-router.get('/', (req, res) => {
-  // console.log(req.body);
-  res.send('oi')
-} )
 router.post("/", async (req, res) => {
-  const { nome, login, senha } = req.body;
+  const { nome, login, senha, id } = req.body;
   const auth = new google.auth.GoogleAuth({
     credentials: {
       "type": "service_account",
@@ -27,17 +23,22 @@ router.post("/", async (req, res) => {
     const client = await auth.getClient();
     const googleSheets = google.sheets({ version: "v4", auth: client });
     const spreadsheetId = '1EUpzlHqk4IFaoC0bDMWtTw26wuf14YBQzXR6nyz0QtQ';
-    console.log(nome, login, senha);
-    googleSheets.spreadsheets.values.append({
+    console.log(nome, login, senha, id);
+    googleSheets.spreadsheets.values.update({
       auth,
       spreadsheetId,
-      range: "usuarios!A:D",
+      range: `usuarios!A${id}:D${id}`,
       valueInputOption: "USER_ENTERED",
       resource: {
-        values: [[nome, login, senha]]
+        range: `usuarios!A${id}:D${id}`,
+        values: [
+          [nome, login, senha, id]
+        ]
       }
+      
+      
     });
-    res.send({ status: 'OK'})
+    res.send({ status: 'OK!'})
   } catch (error) {
     res.send(error);
   }
