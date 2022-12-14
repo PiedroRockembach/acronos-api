@@ -14,12 +14,17 @@ app.use((req, res, next) => {
 app.use(expressCspHeader({
   directives: {
       'default-src': [SELF],
-      'script-src': [SELF, INLINE, 'somehost.com'],
-      'style-src': [SELF, 'mystyles.net'],
-      'img-src': ['data:', 'images.com'],
-      'worker-src': [NONE],
-      'block-all-mixed-content': true
-  }
+      'report-to': 'my-report-group'
+  },
+  reportUri: 'https://cspreport.com/send',
+  reportTo: [
+      {
+          group: 'my-report-group',
+          max_age: 30 * 60,
+          endpoints: [{ url: 'https://cspreport.com/send'}],
+          include_subdomains: true
+      }
+  ]
 }));
 
 const items = require("./api/items");
