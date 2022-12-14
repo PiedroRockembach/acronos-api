@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const { google } = require('googleapis')
 const app = express();
+const { expressCspHeader, INLINE, NONE, SELF } = require('express-csp-header');
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
@@ -9,6 +10,17 @@ app.use((req, res, next) => {
   app.use(cors()); 
   next();
 });
+
+app.use(expressCspHeader({
+  directives: {
+      'default-src': [SELF],
+      'script-src': [SELF, INLINE, 'somehost.com'],
+      'style-src': [SELF, 'mystyles.net'],
+      'img-src': ['data:', 'images.com'],
+      'worker-src': [NONE],
+      'block-all-mixed-content': true
+  }
+}));
 
 const items = require("./api/items");
 const users = require("./api/users");
