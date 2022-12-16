@@ -3,13 +3,14 @@ const cors = require('cors');
 const { google } = require('googleapis')
 const app = express();
 
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "https://acronos-rpg.vercel.app, http://localhost:3000");
-  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
-  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  app.use(cors()); 
-  next();
-});
+app.use(cors()); 
+// app.use((req, res, next) => {
+//   res.header("Access-Control-Allow-Origin", "https://acronos-rpg.vercel.app, http://localhost:3000");
+//   res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
+//   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+//   app.use(cors()); 
+//   next();
+// });
 
 const items = require("./api/items");
 const users = require("./api/users");
