@@ -2,7 +2,6 @@ const express = require('express');
 const cors = require('cors');
 const { google } = require('googleapis')
 const app = express();
-const { expressCspHeader, INLINE, NONE, SELF } = require('express-csp-header');
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
@@ -11,21 +10,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(expressCspHeader({
-  directives: {
-      'default-src': [SELF],
-      'report-to': 'my-report-group'
-  },
-  reportUri: 'https://cspreport.com/send',
-  reportTo: [
-      {
-          group: 'my-report-group',
-          max_age: 30 * 60,
-          endpoints: [{ url: 'https://cspreport.com/send'}],
-          include_subdomains: true
-      }
-  ]
-}));
+
 
 const items = require("./api/items");
 const users = require("./api/users");
