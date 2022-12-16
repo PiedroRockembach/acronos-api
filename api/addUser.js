@@ -2,6 +2,7 @@ const express = require('express');
 const { google } = require('googleapis')
 const router = express.Router();
 
+router.get('/', (req, res) => res.send({status: 'ok'}) )
 router.post("/", async (req, res) => {
   const { nome, login, senha, id } = req.body;
   const auth = new google.auth.GoogleAuth({
