@@ -61,7 +61,7 @@ router.post("/", async (req, res) => {
       resource: {
         range: `usuarios!A${id}:E${id}`,
         values: [
-          [cur.nome, cur.login, cur.senha, cur.id, JSON.stringify([ ...email, jsonInvite])]
+          [cur.nome, cur.login, cur.senha, cur.id, email ? JSON.stringify([ ...email, jsonInvite]) :  JSON.stringify([jsonInvite])]
         ]
       }
       
