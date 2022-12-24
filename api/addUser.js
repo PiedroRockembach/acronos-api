@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.get('/', (req, res) => res.send({status: 'ok'}) )
 router.post("/", async (req, res) => {
-  const { nome, login, senha, id } = req.body;
+  const { nome, login, senha, id, email } = req.body;
   const auth = new google.auth.GoogleAuth({
     credentials: {
       "type": "service_account",
@@ -33,7 +33,7 @@ router.post("/", async (req, res) => {
       resource: {
         range: `usuarios!A${id}:E${id}`,
         values: [
-          [nome, login, senha, id, '[]']
+          [nome, login, senha, id, email]
         ]
       }
       
