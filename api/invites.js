@@ -52,7 +52,6 @@ router.post("/", async (req, res) => {
 
     })
     const email = JSON.parse(cur.email);
-    console.log(email);
     googleSheets.spreadsheets.values.update({
       auth,
       spreadsheetId,
