@@ -33,7 +33,7 @@ router.post("/", async (req, res) => {
       resource: {
         range: `usuarios!A${id}:D${id}`,
         values: [
-          [nome, login, senha, id, []]
+          [nome, login, senha, id, '[]']
         ]
       }
       
