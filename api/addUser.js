@@ -28,10 +28,10 @@ router.post("/", async (req, res) => {
     googleSheets.spreadsheets.values.update({
       auth,
       spreadsheetId,
-      range: `usuarios!A${id}:D${id}`,
+      range: `usuarios!A${id}:E${id}`,
       valueInputOption: "USER_ENTERED",
       resource: {
-        range: `usuarios!A${id}:D${id}`,
+        range: `usuarios!A${id}:E${id}`,
         values: [
           [nome, login, senha, id, '[]']
         ]
