@@ -45,7 +45,7 @@ router.get('/', async (req, res) => {
 } )
 
 router.post("/", async (req, res) => {
-  const { nome, mestre, jogadores, descricao, id} = req.body;
+  const { nome, mestre, jogadores, descricao, id, personagem} = req.body;
   const auth = new google.auth.GoogleAuth({
     credentials: {
       "type": "service_account",
@@ -65,16 +65,16 @@ router.post("/", async (req, res) => {
     const client = await auth.getClient();
     const googleSheets = google.sheets({ version: "v4", auth: client });
     const spreadsheetId = '1EUpzlHqk4IFaoC0bDMWtTw26wuf14YBQzXR6nyz0QtQ';
-    console.log(nome, mestre, jogadores, descricao, id);
+    console.log(nome, mestre, jogadores, descricao, id, personagem);
     googleSheets.spreadsheets.values.update({
       auth,
       spreadsheetId,
-      range: `mesas!A${id}:D${id}`,
+      range: `mesas!A${id}:E${id}`,
       valueInputOption: "USER_ENTERED",
       resource: {
-        range: `mesas!A${id}:D${id}`,
+        range: `mesas!A${id}:E${id}`,
         values: [
-          [nome, mestre, jogadores, descricao]
+          [nome, mestre, jogadores, descricao, personagem]
         ]
       }
       
